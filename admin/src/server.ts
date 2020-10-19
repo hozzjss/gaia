@@ -32,7 +32,10 @@ function runSubprocess(
     opts.gid = gid;
   }
   sudo.exec(
-    "pkill -f blockstack-gaia-hub; nohup /usr/local/bin/blockstack-gaia-hub /var/www/gaia/hub/config.json &"
+    "pkill -f blockstack-gaia-hub; nohup /usr/local/bin/blockstack-gaia-hub /var/www/gaia/hub/config.json &",
+    (error) => {
+      console.log(error);
+    }
   );
 
   return Promise.resolve({ statusCode: 200, status: { result: "OK" } });
